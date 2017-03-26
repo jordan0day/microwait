@@ -17,7 +17,7 @@ defmodule Microwait do
   """
   @spec wait_micros(non_neg_integer(), [yield: boolean()] | []) :: :ok
   def wait_micros(amount, opts \\ []) do
-    now = :os.system_time(:micro_seconds)
+    now = System.monotonic_time(:microseconds)
 
     case Keyword.get(opts, :yield, nil) do
       true  -> wait_with_yield(now, amount)
@@ -27,7 +27,7 @@ defmodule Microwait do
 
   @spec wait_with_yield(non_neg_integer(), non_neg_integer()) :: :ok
   defp wait_with_yield(start, amount) do
-    now = :os.system_time(:micro_seconds)
+    now = System.monotonic_time(:microseconds)
 
     if now - start >= amount do
       :ok
@@ -39,7 +39,7 @@ defmodule Microwait do
 
   @spec wait_no_yield(non_neg_integer(), non_neg_integer()) :: :ok
   defp wait_no_yield(start, amount) do
-    now = :os.system_time(:micro_seconds)
+    now = System.monotonic_time(:microseconds)
 
     if now - start >= amount do
       :ok
