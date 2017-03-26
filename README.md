@@ -7,7 +7,7 @@ power perspective, but it was easy to write. Future versions may include
 optional NIFs for using lower level operations which may be more
 power-efficient.
 
-Just call `Microwait.wait_us(500)` to perform a wait of *at least* 500
+Just call `Microwait.wait_micros(500)` to perform a wait of *at least* 500
 microseconds.
 
 Pass a second optional `true` parameter to have the wait internally call
@@ -15,7 +15,7 @@ Pass a second optional `true` parameter to have the wait internally call
 the erlang documentation, may actually hurt performance), but might aid overall
 performance on single-core machines.
 
-`Microwait.wait_us(500, true)`
+`Microwait.wait_micros(500, true)`
 
 ## Future TODOs
 * Implement NIF(s) which may use underlying OS-level sleep operations.
